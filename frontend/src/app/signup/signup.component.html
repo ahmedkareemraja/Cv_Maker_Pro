@@ -1,0 +1,94 @@
+<!--Heading-->
+<div class="container mt-5">
+    <h3 class="font-weight-bold text-center">CREATE AN ACCOUNT</h3>
+ </div>
+
+
+<div class="container mt-5">
+    <!--[formGroup]="regForm" (ngSubmit)="createAccount(regForm.value)"-->
+    <form [formGroup]="regForm" (ngSubmit)="createAccount(regForm.value)">
+        <!-- OVERALL Row-->
+        <div class="row">
+            <!--OVERALL row spacing column 1-->
+            <div class="col-md-3"></div>
+
+
+            <div class="box col-md-6  border text-center" >
+                <!--Name-->
+                <div class="row mt-3 mb-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name">
+                        
+                      </mat-form-field>
+                      <div *ngIf = "regForm.controls['name'].invalid &&
+                      (regForm.controls['name'].dirty || regForm.controls['name'].touched)
+                      
+                      ">
+                          <p class="text-danger">This field is required</p>
+                      </div>
+                </div>
+
+                <!--Email-->
+                <div class="row mt-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                      </mat-form-field>
+                      <div *ngIf = "regForm.controls['email'].invalid &&
+                            (regForm.controls['email'].dirty || regForm.controls['email'].touched)">
+                                <p class="text-danger">This field is required</p>
+                        </div>
+                </div>
+
+                  <!--Password-->
+                  <div class="row mt-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password">
+                      </mat-form-field>
+                      <div *ngIf = "regForm.controls['password'].invalid
+                      &&
+                      (regForm.controls['password'].dirty || regForm.controls['password'].touched)
+                      ">
+                          <p class="text-danger">This field is required</p>
+                      </div>
+                </div>
+
+
+                <!--Confirm Password-->
+                <div class="row mt-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Confirm Password</mat-label>
+                        <input matInput type="password" formControlName="confirm">
+                      </mat-form-field>
+                      <div *ngIf = "regForm.controls['confirm'].invalid
+                            &&
+                            (regForm.controls['confirm'].dirty || regForm.controls['confirm'].touched)
+                            ">
+                                <p class="text-danger">This field is required</p>
+                            </div>
+                </div>
+
+
+                 <!--Button-->
+
+                 <div class="container mt-3">
+
+                    <button type="submit" class="signupbtn btn btn-primary mr-5" [disabled]="regForm.pristine || regForm.invalid">Create Account</button>
+                   
+
+                    <!-- -->
+                    
+                </div>
+
+
+
+
+            </div>
+
+            <!--OVERALL row spacing column 1-->
+            <div class="col-md-3"></div>
+        </div>
+    </form>
+</div>

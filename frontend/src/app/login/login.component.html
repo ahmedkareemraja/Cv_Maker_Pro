@@ -1,0 +1,68 @@
+<!--Heading-->
+<div class="container mt-5">
+    <h3 class="font-weight-bold text-center">LOGIN TO AN EXISTING ACCOUNT</h3>
+ </div>
+
+ <div class="container mt-5">
+    <!--[formGroup]="regForm" (ngSubmit)="loginAccount(regForm.value)"-->
+    <form [formGroup]="regForm" (ngSubmit)="loginAccount(regForm.value)">
+        <!-- OVERALL Row-->
+        <div class="row">
+            <!--OVERALL row spacing column 1-->
+            <div class="col-md-3"></div>
+
+
+            <div class="box col-md-6  border text-center" >
+                
+
+                <!--Email-->
+                <div class="row mt-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                      </mat-form-field>
+                      <div *ngIf = "regForm.controls['email'].invalid &&
+                            (regForm.controls['email'].dirty || regForm.controls['email'].touched)">
+                                <p class="text-danger">This field is required</p>
+                        </div>
+                </div>
+
+                  <!--Password-->
+                  <div class="row mt-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password">
+                      </mat-form-field>
+                      <div *ngIf = "regForm.controls['password'].invalid
+                      &&
+                      (regForm.controls['password'].dirty || regForm.controls['password'].touched)
+                      ">
+                          <p class="text-danger">This field is required</p>
+                      </div>
+                </div>
+
+
+                
+                
+
+                 <!--Button-->
+
+                 <div class="container mt-3">
+
+                    <button type="submit" class="login btn btn-primary mr-5" [disabled]="regForm.pristine || regForm.invalid">Login</button>
+                    
+
+                   
+                    
+                </div>
+
+
+
+
+            </div>
+
+            <!--OVERALL row spacing column 1-->
+            <div class="col-md-3"></div>
+        </div>
+    </form>
+</div>

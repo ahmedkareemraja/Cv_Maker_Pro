@@ -1,0 +1,67 @@
+<mat-toolbar color=#202020 class="toolbar">
+    <p class="mt-2">CV Maker PRO</p>
+    <div class="navbarcontainer"></div>
+    <div *ngIf="isLoggedIn$ | async  ;else elseBlock">
+        <a mat-button routerLink ="home">Home</a>
+        <a mat-button routerLink ="cv">Create A CV</a>
+        <a mat-raised-button color="accent" (click)="logout()" routerLink ="login">logout</a>
+    </div>
+
+    <ng-template #elseBlock>
+        <!-- <div *ngIf="flag ; else elseBlock"> -->
+            <a mat-raised-button class="mr-2" color="accent" (click)="signUpClick()" routerLink ="signup">Create an Account</a>            
+        <!-- </div> -->
+        <!-- <ng-template #elseBlock> -->
+            <a mat-raised-button color="accent" (click)="loginClick()" routerLink ="login">Login</a>
+            
+        <!-- </ng-template> -->
+        
+    </ng-template>
+    
+
+</mat-toolbar>
+
+
+
+<!--
+   
+<a mat-raised-button color="accent" (click)="signUpClick()" routerLink ="signup">Create an Account</a>
+ <div *ngIf="loginStatus";else #elseBlock> 
+        
+        <a mat-button routerLink ="home">Home</a>
+        <a mat-button routerLink ="cv">Create A CV</a>
+        <a mat-raised-button color="accent" (click)="logout()" routerLink ="login">Logout</a>
+    </div>
+    <ng-template #elseBlock>
+        <a mat-raised-button color="accent" routerLink ="signup">Create an Account</a>
+    </ng-template>
+
+
+
+<div class="navbarcontainer"></div>
+    <a mat-button routerLink ="login">Login</a>
+    
+    
+    <a mat-raised-button color="accent" routerLink ="signup">Create an Account</a>
+
+
+-->
+
+<!-- <div class="container">
+    div *ngIf="loginStatus;else elseBlock">logout</div>
+    <ng-template #elseBlock>Login</ng-template>
+    <div class="row">
+        <div class="col col-md-11">
+            MEOW
+        </div>
+        <div class="col col-md-1">
+            MEOW
+        </div>
+         <div class="col col-md-3">
+            MEOW
+        </div>
+        <div class="col col-md-3">
+            MEOW
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,144 @@
+<div class="mt-5">
+    <h3 class="font-weight-bold text-center">CREATE A CV</h3>
+ </div>
+
+
+
+
+ <!--Overall container-->
+<div class="container">
+    <!--[formGroup]="regForm" (ngSubmit)="loginAccount(regForm.value)"-->
+    <form [formGroup]="cvForm" (ngSubmit)="saveCV(cvForm.value)">
+        <!--Overall row-->
+        <div class="row">
+
+            <!--LEFT SPACING COLUMN-->
+            <div class="col-md-2"></div>
+
+            <!--MAIN  COLUMN-->
+            <div class="box col-md-8 border">
+
+                <!--CV Title-->
+                <mat-form-field class="example-full-width">
+                    <mat-label>CV Title</mat-label>
+                    <input matInput formControlName="title">
+                </mat-form-field>
+
+                <hr>
+
+                <!--Name-->
+                <mat-form-field class="example-full-width">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+
+                <!--Phone-->
+                <mat-form-field class="example-full-width">
+                    <mat-label>Phone</mat-label>
+                    <input matInput type="number"  formControlName="phone">
+                </mat-form-field>
+
+                <!--Address-->
+                <mat-form-field class="example-full-width">
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="address">
+                </mat-form-field>
+
+                <hr>
+
+                <!--Education-->
+                <div>
+                    <div class="row">
+                        <div class="col-lg-2 ">
+                            <p class="lead mt-2">Education</p>
+                        </div>
+                        <div class="col-lg-8 ">
+                            <button type="button" class="btn btn-success" (click)="addEducationButton()">+</button>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row" formArrayName="education" >
+                        <div class="container" *ngFor="let group of educationArray.controls ; let i = index;" [formGroupName]="i" >
+                            <div class="row">
+                            
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Institution</mat-label>
+                                    <input matInput formControlName="institution">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="row">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Degree</mat-label>
+                                    <input matInput formControlName="degree">
+                                </mat-form-field>
+                            </div>
+                            <div class="row d-flex justify-content-end">
+                                <button type="button" class="btn btn-danger" (click)="removeEducationButton(i)">-</button>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+                </div>
+
+                <br>
+                <hr>
+
+                <!-- Experience -->
+                <div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p class="lead mt-2">Experience</p>
+                        </div>
+                        <!-- add btn-->
+                        <div class="col-lg-8">
+                            <button type="button" (click)="addExperienceButton()" class="btn btn-success">+</button>
+                        </div>
+                    </div>
+                    <br>
+                    <!--FormArrayExperience-->
+                    <div class="row" formArrayName ="experience">
+                        <div class="container" *ngFor="let group of experienceArray.controls ; let i = index;" [formGroupName]="i">
+                            <div class="row">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Company</mat-label>
+                                    <input matInput formControlName = "company">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="row">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Job Title</mat-label>
+                                    <input matInput formControlName = "job_title">
+                                </mat-form-field>
+                            </div>
+                            <!--Remove btn-->
+                            <div class="row d-flex justify-content-end">
+                                <button type="button" (click)="removeExperienceButton(i)" class="btn btn-danger" >-</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br>
+                <br>
+
+                <!--Save Button-->
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="saveCVbtn btn btn-primary">Save CV</button>
+                </div>
+            </div>
+
+
+            <!--RIGHT SPACING COLUMN-->
+            <div class="col-md-2"></div>
+    </div>
+
+    </form>
+    
+</div>

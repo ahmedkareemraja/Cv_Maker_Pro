@@ -1,0 +1,12 @@
+.example-full-width {
+    width: 100%;
+  }
+.box {
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 25px;
+}
+
+.signupbtn{
+  width: 50%;
+}

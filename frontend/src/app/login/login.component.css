@@ -1,0 +1,12 @@
+.box {
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 25px;
+}
+
+.example-full-width {
+    width: 100%;
+  }
+.login{
+    width: 50%;
+}
