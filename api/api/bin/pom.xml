@@ -54,12 +54,6 @@
    			 <version>5.5.13.2</version>
 		</dependency>
 
-		<!--Web security -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		 </dependency>
-
 
 	</dependencies>
 

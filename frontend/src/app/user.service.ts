@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient } from '@angular/common/http'
+import {HttpClient, HttpHeaders } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 
@@ -8,15 +8,16 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  post_user_url = "http://localhost:8080/addUser";
-  get_user_url = "http://localhost:8080/user/"
+  post_user_url = "http://localhost:8080/user/addUser";
+  get_user_url = "http://localhost:8080/login"
+
   post_cv_url ="http://localhost:8080/addCV"
   get_cv_url = "http://localhost:8080/cv/all/"
   delete_cv_url = "http://localhost:8080/delete/"
   download_cv_url = "http://localhost:8080/download"
 
 
-  loginEmail = "ahmed@gmail.com";
+  loginEmail = "";
   loginStatus : Boolean = false;
 
   public loggedIn = new BehaviorSubject<boolean>(false);
@@ -57,7 +58,10 @@ export class UserService {
 
   //Get login Status
   getLoginStatus(){
-    return this.loginStatus;
+    //return this.loginStatus;
+    if(this.loginStatus == true){
+      this.loggedIn.next(true);
+    }
   }
   //Get loginEmail
   getLoginEmail(){
@@ -65,52 +69,6 @@ export class UserService {
     // console.log(this.loginEmail);
     return this.loginEmail;
   }
-
-  
-
-                              //CV OPERATIONS
-  //download cv
-  downloadCV(cv){
-    console.log("Inside download cv service");
-    this.http.post(this.download_cv_url,cv)
-    .subscribe((res)=>{
-      console.log('Done');
-    })
-    
-  }
-
-
-  //Delete cv
-  deleteCV(cv_id){
-    console.log("inside delete");
-    console.log(cv_id);
-    console.log(this.delete_cv_url+cv_id);
-    return this.http.delete(this.delete_cv_url+cv_id).subscribe(res =>{
-      console.log('Done');
-    })
-  }
-
-  //Get All CVs of one user
-  getCvs(){
-    this.getLoginEmail();
-    return this.http.get(this.get_cv_url+this.loginEmail);
-  }
-
-
-  //SaveCV
-  saveCV(cv){
-    console.log("Inside service file");
-    console.log(cv);
-    this.http.post(this.post_cv_url,cv)
-    .subscribe((res) => {
-      console.log('Done');
-      alert("CV Saved");
-    })
-  }
-
-
-  
- 
                                     //LOGIN/SINGUP
   
 
@@ -118,11 +76,57 @@ export class UserService {
     getUser(email,password) : any{
     // .subscribe((res) => console.log('Done'));
     console.log("INside get User");
-    
+    console.log(email);
+    console.log(password);
     let obj : any
     // this.loggedIn.next(true);
     
-    return this.http.get<any>(this.get_user_url+email)
+    // return this.http.get<any>(this.get_user_url+email);
+    obj = {
+      email,
+      password
+    }
+
+    // const headers =new  HttpHeaders({Authorization: 'Basic'+btoa(email+":"+password) });
+    // this.http.get(this.get_user_url,{headers})
+    // .subscribe((res)=>{
+    //   alert(res);
+    //   if(res == true){
+    //     console.log("YESSS");
+    //   }
+    //   else
+    //   {
+    //     console.log("NOO");
+    //   }
+    // },
+    // (err)=>{
+    //   // alert(err);
+    //   alert("ERROR ");
+    //   alert(err);
+    // }
+    // )
+    this.http.post(this.get_user_url,obj)
+    .subscribe(
+
+      (res)=>{
+        alert(res);
+      if(res == true){
+        this.loggedIn.next(true);
+        this.loginEmail = email;
+        alert("Login Successful");
+        this.router.navigateByUrl('/home');
+      }
+      else
+      {
+        alert("Incorrect email or password");
+      }
+      
+     },
+      (err) =>{
+        alert(err);
+      }
+
+    )
 
     
     
@@ -141,10 +145,15 @@ export class UserService {
 
     console.log(obj);
     this.http.post(this.post_user_url,obj)
-    .subscribe((res) => 
+    .subscribe(
+    (res) => 
     {
       console.log('Done');
       this.loggedIn.next(true);
+      this.router.navigateByUrl('/home');
+    },
+    (err) =>{
+      alert(err);
     }
     
     );

@@ -63,7 +63,7 @@ export class SignupComponent implements OnInit {
 
       this.us.addUser(temp_name,temp_email,temp_password);
 
-      this.router.navigateByUrl('/home');
+      
 
 
       

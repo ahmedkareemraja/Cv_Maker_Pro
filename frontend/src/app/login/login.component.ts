@@ -11,10 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   regForm : FormGroup;
-  email : String = ""
-  password : String = ""
+  // email : String = ""
+  // password : String = ""
 
-  incorrect : String = "";
+  // incorrect : String = "";
   
 
   constructor(
@@ -38,6 +38,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    // this.regForm.patchValue({
+    //   email:'ahmed@gai'
+    // });
   }
 
   loginAccount(user){
@@ -51,22 +54,22 @@ export class LoginComponent implements OnInit {
 
     let obj : any
     this.us.getUser(temp_email,temp_password)
-    .subscribe(data => {
-      console.log('D0ne');
-      console.log(data);
-      if(data.password == user.password)
-      {
-        console.log('True');
-        this.us.loggedIn.next(true);
-        this.router.navigateByUrl('/home');
-        this.us.saveLoginInfo(data);
-      }
-      else
-      {
-        alert("Incorrect Email or password");
-      }
+    // .subscribe(data => {
+    //   console.log('D0ne');
+    //   console.log(data);
+    //   if(data.password == user.password)
+    //   {
+    //     console.log('True');
+    //     this.us.loggedIn.next(true);
+    //     this.router.navigateByUrl('/home');
+    //     this.us.saveLoginInfo(data);
+    //   }
+    //   else
+    //   {
+    //     alert("Incorrect Email or password");
+    //   }
 
-    })
+    // })
 
 
     // console.log("Back to login button");

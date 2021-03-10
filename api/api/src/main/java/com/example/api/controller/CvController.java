@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,6 +43,13 @@ public class CvController {
     @PostMapping("/addCV")
     public Cv addCV(@RequestBody Cv cv) {
         return cvService.saveCv(cv);
+    }
+
+    //Update ONe cv 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/update/{cv_id}")
+    public Cv updateCv(@PathVariable int cv_id, @RequestBody Cv cv){
+        return cvService.updateCv(cv, cv_id);
     }
 
     // //Download CV

@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
     //   this.flag = true;
     // }
     // console.log('Navoninit');
+    this.us.getLoginStatus();
     this.isLoggedIn$ = this.us.isLoggedIn;
   }
 

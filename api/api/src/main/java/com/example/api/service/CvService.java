@@ -39,4 +39,28 @@ public class CvService {
     public Optional<Cv> getCVById(int cv_id) {
         return cvRepository.findById(cv_id);
     }
+
+      //Update CV 
+      public Cv updateCv(Cv cv, int cv_id) {
+        Cv existingCV = cvRepository.findById(cv_id).orElse(null);
+        existingCV.setTitle(cv.getTitle());
+        existingCV.setName(cv.getName());
+        existingCV.setPhone(cv.getPhone());
+        existingCV.setAddress(cv.getAddress());
+        existingCV.setEducation(cv.getEducation());
+        existingCV.setExperience(cv.getExperience());
+
+        // String title = cv.getTitle();
+        // String name = cv.getName();
+        // int phone = cv.getPhone();
+        // String address = cv.getAddress();
+        // List<Education> education = cv.getEducation();
+        // List<Experience> experience = cv.getExperience();
+
+        return cvRepository.save(existingCV);
+        // return cvRepository.updateCVByUser(cv_id, title, name, phone, address, education, experience);
+
+        
+
+    }
 }
