@@ -8,7 +8,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  post_user_url = "http://localhost:8080/user/addUser";
+  post_user_url = "http://localhost:8080/addUser";
   get_user_url = "http://localhost:8080/login"
 
   post_cv_url ="http://localhost:8080/addCV"
